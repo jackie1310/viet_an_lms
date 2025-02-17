@@ -36,6 +36,8 @@ Utilized for data visualization and dashboard creation:
 ## 3) Data Sources
 The dataset used in this analysis is sourced from the **SCA Programming School** and is publicly available on **GitHub**.
 
+**Data sources:** https://github.com/sca-programming-school/datasets/blob/main/marketing_data_with_missing_values.csv
+
 ### **Dataset Details:**
 - **Dataset Name:** Marketing Data with Missing Values
 - **Description:** The dataset includes **demographic information, purchase behavior, and various marketing-related metrics**. Some values are missing, requiring **data cleaning and preprocessing** before analysis.
