@@ -100,6 +100,17 @@ There are four columns with missing values:
 + `DT_Customer` (Category) => replace missing values with NaT
 + `NumWebVisitsMonth` (number) => replace missing values with mean
 
+```python
+def replace_missing_value(col_name, replace_type):
+    if replace_type == "mean":
+        df[col_name] = df[col_name].fillna(df[col_name].mean())
+    elif replace_type == "mode":
+        df[col_name] = df[col_name].fillna(df[col_name].mode()[0])
+    elif replace_type == "median":
+        df[col_name] = df[col_name].fillna(df[col_name].median())
+    return df[col_name]
+```
+
 ## 6) EDA Process
 ### **What caused the increase in the number of products purchased?**
 Focus on products, such as:
@@ -126,6 +137,11 @@ Focus on products, such as:
 
 ### 6.6. Gold
 + NumCatalogPurchases:   **0.568304**
+
+### Plotting histogram to observe the marital status distribution
+![Meat Correlation](images/marital_status.png)
+
+- The majority of customers are either married or in a relationship
 
 
 ## 7) Visualization 
@@ -159,7 +175,7 @@ Focus on products, such as:
 
 ---
 
-### **Line Chart: Wines & Meats by Month**
+### 7.2 Line Chart: Wines & Meats by Month
 ![Line chart](dashboards/line_chart.png)
 
 #### **Steps to Create**
@@ -181,7 +197,7 @@ Focus on products, such as:
 
 ---
 
-### **Bubble Chart: Income vs. Purchases**
+### 7.3 Bubble Chart: Income vs. Purchases
 ![Scatter](dashboards/scatter.png)
 
 #### **Steps to Create**
@@ -203,7 +219,7 @@ Focus on products, such as:
 
 ---
 
-### **Bar Chart: Marital Status Distribution**
+### 7.4 Bar Chart: Marital Status Distribution
 ![Bar](dashboards/bar.png)
 
 #### **Steps to Create**
@@ -225,7 +241,7 @@ Focus on products, such as:
 
 ---
 
-### **Donut Chart: Preferred Shopping Method**
+### 7.5 Donut Chart: Preferred Shopping Method
 ![Donut](dashboards/donut.png)
 
 #### **Steps to Create**
@@ -239,7 +255,7 @@ Focus on products, such as:
 
 ---
 
-### **Area Line Chart: Monthly Deal Purchases**
+### 7.6 Area Line Chart: Monthly Deal Purchases
 ![Area](dashboards/area.png)
 
 #### **Steps to Create**
@@ -251,3 +267,200 @@ Focus on products, such as:
 - **Seasonal Trends:** Peaks in **August & October**, drop in **July**.
 - **Promotion Optimization:** Increase discounts in low months.
 - **Customer Behavior Analysis:** Identify trends in deal purchases.
+
+## **8) Analysis**
+### **Predict the Wines & Meat Purchases**
+
+- In this section, I utilized Machine Learning to formulate hypotheses regarding the purchase amount of wine and meat.
+
+### 8.1 Wines
+- X: `NumWebPurchases`, `NumCatalogPurchases`, `NumStorePurchases`
+- y: `MntWines`
+
+```python
+import statsmodels.api as sm
+
+X_wine = df[["NumWebPurchases", "NumCatalogPurchases", "NumStorePurchases"]]
+y_wine = df["MntWines"]
+
+X_wine = sm.add_constant(X_wine)
+
+model = sm.OLS(y_wine, X_wine).fit()
+
+print(model.summary())
+```
+
+OLS Regression Results                            
+==============================================================================
+Dep. Variable:               MntWines   R-squared:                       0.710
+Model:                            OLS   Adj. R-squared:                  0.708
+Method:                 Least Squares   F-statistic:                     638.3
+Date:                Sat, 15 Feb 2025   Prob (F-statistic):          6.70e-210
+Time:                        14:20:01   Log-Likelihood:                -3781.6
+No. Observations:                 788   AIC:                             7571.
+Df Residuals:                     784   BIC:                             7590.
+Df Model:                           3                                         
+Covariance Type:            nonrobust                                         
+=======================================================================================
+                          coef    std err          t      P>|t|      [0.025      0.975]
+---------------------------------------------------------------------------------------
+const                 -72.7952      4.368    -16.666      0.000     -81.369     -64.221
+NumWebPurchases        19.5236      1.050     18.585      0.000      17.461      21.586
+NumCatalogPurchases    21.9635      1.975     11.122      0.000      18.087      25.840
+NumStorePurchases      19.4142      1.589     12.216      0.000      16.295      22.534
+==============================================================================
+Omnibus:                       40.641   Durbin-Watson:                   1.809
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):               91.150
+Skew:                           0.287   Prob(JB):                     1.61e-20
+Kurtosis:                       4.564   Cond. No.                         18.5
+==============================================================================
+
+
++ **R^2 = 71%**: the model can explain 71% of the variance in the dependent variable (`MntWines`) based on the independent variables (`NumWebPurchases`, `NumCatalogPurchases`, `NumStorePurchases`)
++ **All p-value equal to 0**: all independent variables have a real effect on the dependent variable
+
+#### Case 1: Web purchases
+```python
+test_data_wine = pd.DataFrame({
+    "NumWebPurchases": [10],
+    "NumCatalogPurchases": [0],
+    "NumStorePurchases": [0]
+})
+
+test_data_wine = sm.add_constant(test_data_wine, has_constant="add")
+
+predicted_amount = model.predict(test_data_wine)
+
+print(f"Predicted Wines Purchases: {predicted_amount[0]}")
+```
+
+- Predicted Wines Purchases: **122.44076095476626**
+
+#### Case 2: Catalog purchases
+
+```python 
+test_data_wine = pd.DataFrame({
+    "NumWebPurchases": [0],
+    "NumCatalogPurchases": [10],
+    "NumStorePurchases": [0]
+})
+
+test_data_wine = sm.add_constant(test_data_wine, has_constant="add")
+
+predicted_amount = model.predict(test_data_wine)
+
+print(f"Predicted Wines Purchases: {predicted_amount[0]}")
+```
+
+- Predicted Wines Purchases: **146.83998188674454**
+
+#### Case 3: Store Purchases
+
+```python
+test_data_wine = pd.DataFrame({
+    "NumWebPurchases": [0],
+    "NumCatalogPurchases": [0],
+    "NumStorePurchases": [10]
+})
+
+test_data_wine = sm.add_constant(test_data_wine, has_constant="add")
+
+predicted_amount = model.predict(test_data_wine)
+
+print(f"Predicted Wines Purchases: {predicted_amount[0]}")
+```
+
+- Predicted Wines Purchases: **121.34690394696327**
+
+### 8.2 Meats
+- X: `NumWebPurchases`, `NumStorePurchases`
+- y: `MntMeatProducts`
+
+```python
+import statsmodels.api as sm
+
+X_meat = df[["NumWebPurchases", "NumStorePurchases"]]
+y_meat = df["MntMeatProducts"]
+
+X_meat = sm.add_constant(X_meat)
+
+model = sm.OLS(y_meat, X_meat).fit()
+
+print(model.summary())
+```
+
+OLS Regression Results                            
+==============================================================================
+Dep. Variable:        MntMeatProducts   R-squared:                       0.569
+Model:                            OLS   Adj. R-squared:                  0.568
+Method:                 Least Squares   F-statistic:                     518.4
+Date:                Sat, 15 Feb 2025   Prob (F-statistic):          3.07e-144
+Time:                        14:20:01   Log-Likelihood:                -3270.8
+No. Observations:                 788   AIC:                             6548.
+Df Residuals:                     785   BIC:                             6562.
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+=====================================================================================
+                        coef    std err          t      P>|t|      [0.025      0.975]
+-------------------------------------------------------------------------------------
+const               -22.2662      2.282     -9.756      0.000     -26.746     -17.786
+NumWebPurchases      10.0283      0.505     19.844      0.000       9.036      11.020
+NumStorePurchases     6.9288      0.830      8.343      0.000       5.299       8.559
+==============================================================================
+Omnibus:                      359.365   Durbin-Watson:                   1.960
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):             4118.715
+Skew:                           1.750   Prob(JB):                         0.00
+Kurtosis:                      13.639   Cond. No.                         18.4
+==============================================================================
+
+
++ **R^2 = 57%**: the model can explain 57% of the variance in the dependent variable (`MntWines`) based on the independent variables (`NumWebPurchases`, `NumStorePurchases`)
++ **All p-value equal to 0**: all independent variables have a real effect on the dependent variable
+
+#### Case 1: Web purchases
+
+```python 
+test_data_meat = pd.DataFrame({
+    "NumWebPurchases": [10],
+    "NumStorePurchases": [0]
+})
+
+test_data_meat = sm.add_constant(test_data_meat, has_constant="add")
+
+predicted_amount = model.predict(test_data_meat)
+
+print(f"Predicted Meats Purchases: {predicted_amount[0]}")
+```
+
+- Predicted Meats Purchases: **78.0167545851721**
+
+#### Case 2
+
+```python 
+test_data_meat = pd.DataFrame({
+    "NumWebPurchases": [0],
+    "NumStorePurchases": [10]
+})
+
+test_data_meat = sm.add_constant(test_data_meat, has_constant="add")
+
+predicted_amount = model.predict(test_data_meat)
+
+print(f"Predicted Meats Purchases: {predicted_amount[0]}")
+```
+
+- Predicted Meats Purchases: **47.02217688683694**
+
+#### **What could be concluded from the experiment?**
++ Meat products tend to be more preferable for purchase via e-commerce channels.
++ This may be due to digital transformation, which has noticeably changed customers' shopping habits.
++ When purchasing products through online platforms, people tend to feel more comfortable adding more items to their baskets.
++ The delivery service then dispatches the goods to their homes.
+
+
+### 9) Outcomes
++ Meat and wine were identified as the top-selling products. Therefore, several recommendations have been made, including exclusive promotions targeting high-income customer segments during specific periods. As a result, these strategies may extend major discount events to capitalize on peak deal activity.
+
++ Most purchases of these products occurred in physical stores rather than through e-commerce websites or catalogs. However, multiple studies suggest that online shopping could become the dominant choice in the future, as consumer behavior continues to shift from traditional methods to more convenient digital platforms.
+
++ Additionally, alternative solutions have been proposed to boost sales of sweet and fruit products. For instance, placing sweet products near fruits in stores may encourage cross-category purchases. If this is not feasible, offering discounted bundles of fruit and sweet products could be an effective strategy to drive sales.
