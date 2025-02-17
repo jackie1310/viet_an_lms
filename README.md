@@ -9,14 +9,15 @@
 - Detect **purchasing patterns that suggest bundled behavior** (e.g., people who buy fruits also buy specific items).
 
 ### **Outcomes:**
-✅ Identify the **best-selling products**.
-✅ Determine **key factors driving an increase in product purchases**.
-✅ Understand **which sales channel (catalog, online, or store) is the most significant**.
-✅ Discover **correlations between different product categories**.
-✅ Gain insights into **buying patterns for cross-selling opportunities** (e.g., fruits + sweets).
+✅ Identify the **best-selling products**.<br>
+✅ Determine **key factors driving an increase in product purchases**.<br>
+✅ Understand **which sales channel (catalog, online, or store) is the most significant**.<br>
+✅ Discover **correlations between different product categories**.<br>
+✅ Gain insights into **buying patterns for cross-selling opportunities** (e.g., fruits + sweets).<br>
 ✅ Provide **actionable recommendations for revenue optimization**:
    - If **catalog purchases drive both wine and gold sales**, focus marketing efforts on catalog-based promotions.
    - If **e-commerce purchases lead to higher spending per transaction**, prioritize digital transformation strategies.
+
 
 ## 2) Technologies Used
 
