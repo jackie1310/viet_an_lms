@@ -289,32 +289,7 @@ model = sm.OLS(y_wine, X_wine).fit()
 
 print(model.summary())
 ```
-
-OLS Regression Results                            
-==============================================================================
-Dep. Variable:               MntWines   R-squared:                       0.710
-Model:                            OLS   Adj. R-squared:                  0.708
-Method:                 Least Squares   F-statistic:                     638.3
-Date:                Sat, 15 Feb 2025   Prob (F-statistic):          6.70e-210
-Time:                        14:20:01   Log-Likelihood:                -3781.6
-No. Observations:                 788   AIC:                             7571.
-Df Residuals:                     784   BIC:                             7590.
-Df Model:                           3                                         
-Covariance Type:            nonrobust                                         
-=======================================================================================
-                          coef    std err          t      P>|t|      [0.025      0.975]
----------------------------------------------------------------------------------------
-const                 -72.7952      4.368    -16.666      0.000     -81.369     -64.221
-NumWebPurchases        19.5236      1.050     18.585      0.000      17.461      21.586
-NumCatalogPurchases    21.9635      1.975     11.122      0.000      18.087      25.840
-NumStorePurchases      19.4142      1.589     12.216      0.000      16.295      22.534
-==============================================================================
-Omnibus:                       40.641   Durbin-Watson:                   1.809
-Prob(Omnibus):                  0.000   Jarque-Bera (JB):               91.150
-Skew:                           0.287   Prob(JB):                     1.61e-20
-Kurtosis:                       4.564   Cond. No.                         18.5
-==============================================================================
-
+![Wine model](models/wine_model.png)
 
 + **R^2 = 71%**: the model can explain 71% of the variance in the dependent variable (`MntWines`) based on the independent variables (`NumWebPurchases`, `NumCatalogPurchases`, `NumStorePurchases`)
 + **All p-value equal to 0**: all independent variables have a real effect on the dependent variable
@@ -389,30 +364,7 @@ model = sm.OLS(y_meat, X_meat).fit()
 print(model.summary())
 ```
 
-OLS Regression Results                            
-==============================================================================
-Dep. Variable:        MntMeatProducts   R-squared:                       0.569
-Model:                            OLS   Adj. R-squared:                  0.568
-Method:                 Least Squares   F-statistic:                     518.4
-Date:                Sat, 15 Feb 2025   Prob (F-statistic):          3.07e-144
-Time:                        14:20:01   Log-Likelihood:                -3270.8
-No. Observations:                 788   AIC:                             6548.
-Df Residuals:                     785   BIC:                             6562.
-Df Model:                           2                                         
-Covariance Type:            nonrobust                                         
-=====================================================================================
-                        coef    std err          t      P>|t|      [0.025      0.975]
--------------------------------------------------------------------------------------
-const               -22.2662      2.282     -9.756      0.000     -26.746     -17.786
-NumWebPurchases      10.0283      0.505     19.844      0.000       9.036      11.020
-NumStorePurchases     6.9288      0.830      8.343      0.000       5.299       8.559
-==============================================================================
-Omnibus:                      359.365   Durbin-Watson:                   1.960
-Prob(Omnibus):                  0.000   Jarque-Bera (JB):             4118.715
-Skew:                           1.750   Prob(JB):                         0.00
-Kurtosis:                      13.639   Cond. No.                         18.4
-==============================================================================
-
+![Meat model](models/meat_model.png)
 
 + **R^2 = 57%**: the model can explain 57% of the variance in the dependent variable (`MntWines`) based on the independent variables (`NumWebPurchases`, `NumStorePurchases`)
 + **All p-value equal to 0**: all independent variables have a real effect on the dependent variable
