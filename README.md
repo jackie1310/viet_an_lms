@@ -126,3 +126,128 @@ Focus on products, such as:
 
 ### 6.6. Gold
 + NumCatalogPurchases:   **0.568304**
+
+
+## 7) Visualization 
+
+### 7.1. Product Purchase Amount
+![Cards](dashboards/cards.png)
+
+#### **Import Data**
+- The dataset includes categories such as Wines, Fruits, Sweets, Meats, Gold, and Fish, with their respective sales values.
+- Load this data into Power BI via **CSV**.
+
+#### **Create Individual Cards**
+- Go to the **"Visualizations"** pane in Power BI.
+- Select the **"Card"** visual.
+- Drag the appropriate field (e.g., `MntWines`, `MntFruits`) into the **"Fields"** section to display the respective value.
+
+#### **Customize the Card Formatting**
+- **Font and Colors:** Set distinct color-coded borders and text styles using **Format Pane → Data Label & Title options**.
+- **Border and Background:**
+  - Adjust **Border settings** under **Format Pane**.
+  - Use a **dark theme** via **View → Themes**.
+- **Font Size and Display Format:** Values appear in **K format** (e.g., `645K`).
+- **Conditional Formatting:** Apply conditional formatting to emphasize specific values (e.g., highest/lowest category).
+- **Arranging the Cards:** Arrange in a **grid layout** using **alignment guides**.
+
+#### **Purpose of These Cards**
+- **KPI Dashboard Summary:** Provides a quick glance at product performance.
+- **Decision-Making:** Helps managers identify top-selling and low-performing categories.
+- **Comparative Analysis:** Color-coded approach for distinguishing categories.
+- **Interactive Dashboard Element:** Cards can be linked with filters for further analysis.
+
+---
+
+### **Line Chart: Wines & Meats by Month**
+![Line chart](dashboards/line_chart.png)
+
+#### **Steps to Create**
+- Select **Stacked Area Chart** in Power BI.
+- Drag **Months** to the **X-axis**.
+- Drag **Wine Purchases** and **Meat Purchases** to the **Y-axis**.
+
+#### **Format the Chart**
+- **Colors:**
+  - **Wine Purchases** → Orange line.
+  - **Meat Purchases** → Filled brownish area.
+- **Data Labels:** Enable from **Format Pane**.
+- **Title & Legend:** Add **chart title** and **enable legend**.
+
+#### **Purpose**
+- **Business Decision-Making:** Identify high-demand periods for stock management.
+- **Seasonal Trend Analysis:** Prepare promotions based on sales trends.
+- **Comparative Analysis:** Understand product fluctuations over time.
+
+---
+
+### **Bubble Chart: Income vs. Purchases**
+![Scatter](dashboards/scatter.png)
+
+#### **Steps to Create**
+- Select **Scatter Chart**.
+- Drag **Income** to the **X-axis**.
+- Drag **Meat Purchased** to the **Y-axis**.
+- Drag **Country** to the **Legend**.
+- Drag **Wine Purchased** to the **Size**.
+
+#### **Customization**
+- **Legend Colors:** Assign different colors for each country.
+- **Data Labels:** Enable size-based encoding.
+- **Title Customization:** Rename to **“Higher Income Drives Higher Meat & Wine Purchases.”**
+
+#### **Purpose**
+- **Understanding Purchasing Trends:** Higher income → More spending on **meat & wine**.
+- **Country Comparisons:** Market differences by geography.
+- **Data-Driven Decision Making:** Target high-income consumers.
+
+---
+
+### **Bar Chart: Marital Status Distribution**
+![Bar](dashboards/bar.png)
+
+#### **Steps to Create**
+- Select **Clustered Bar Chart**.
+- Drag **Marital_Status** to the **Y-axis**.
+- Drag **Customer ID** to the **X-axis**.
+
+#### **Customization**
+- **Color Coding:**
+  - **Married** → Orange.
+  - **Others** → Shades of yellow.
+- **Data Labels:** Enable exact customer counts.
+- **Sorting:** Set to descending order.
+
+#### **Purpose**
+- **Customer Segmentation:** Adjust marketing strategies.
+- **Personalized Campaigns:** Target married customers with family-oriented promotions.
+- **Detecting Outliers:** Validate data (e.g., **YOLO** category).
+
+---
+
+### **Donut Chart: Preferred Shopping Method**
+![Donut](dashboards/donut.png)
+
+#### **Steps to Create**
+- Select **Donut Chart**.
+- Drag **Purchase Method (Category)** to **Legend**.
+- Drag **Number of Purchases** to **Values**.
+
+#### **Purpose**
+- **Shopping Preferences:** 65.98% purchases in-store.
+- **Marketing Optimization:** Improve e-commerce and catalog strategies.
+
+---
+
+### **Area Line Chart: Monthly Deal Purchases**
+![Area](dashboards/area.png)
+
+#### **Steps to Create**
+- Select **Area Chart**.
+- Drag **Month** to **X-axis**.
+- Drag **NumDealsPurchases** to **Y-axis**.
+
+#### **Purpose**
+- **Seasonal Trends:** Peaks in **August & October**, drop in **July**.
+- **Promotion Optimization:** Increase discounts in low months.
+- **Customer Behavior Analysis:** Identify trends in deal purchases.
