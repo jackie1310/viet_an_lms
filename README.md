@@ -1,4 +1,4 @@
-# Optimizing revenue by leveraging insights from top-selling products and customer purchasing patte# Customer Purchase Behavior Analysis
+# Optimizing revenue by leveraging insights from top-selling products and customer purchasing pattern
 
 ## 1) Purpose and Outcome
 
@@ -48,6 +48,8 @@ The dataset used in this analysis is sourced from the **SCA Programming School**
 | 10476 |         1958 | Graduation  | Married          | $67,267.00 |         0 |          1 | 5/13/14       |         0 |        134 |          11 |                59 |                15 |                  2 |             30 |                   1 |                 3 |                     2 |                   5 |                   2 |              0 |              0 |              0 |              0 |              0 |          0 |          0 | US        |
 |  1386 |         1967 | Graduation  | Together         | $32,474.00 |         1 |          1 | nan           |         0 |         10 |           0 |                 1 |                 0 |                  0 |              0 |                   1 |                 1 |                     0 |                   2 |                   7 |              0 |              0 |              0 |              0 |              0 |          0 |          0 | AUS       |
 |  5371 |         1989 | Graduation  | Single           | $21,474.00 |         1 |          0 | 4/8/14        |         0 |          6 |          16 |                24 |                11 |                  0 |             34 |                   2 |                 3 |                     1 |                   2 |                   7 |              1 |              0 |              0 |              0 |              0 |          1 |          0 | SP        |
+
+
 The dataset contains **customer marketing and purchasing information**, offering insights into consumer behavior and spending patterns. The attributes are categorized into four main sections: **People, Products, Promotion, and Place**.
 
 ### **1. People (Customer Demographics & Behavior)**
