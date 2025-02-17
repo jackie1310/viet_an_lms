@@ -52,7 +52,7 @@ The dataset used in this analysis is sourced from the **SCA Programming School**
 
 The dataset contains **customer marketing and purchasing information**, offering insights into consumer behavior and spending patterns. The attributes are categorized into four main sections: **People, Products, Promotion, and Place**.
 
-### **1. People (Customer Demographics & Behavior)**
+### **4.1. People (Customer Demographics & Behavior)**
 This section includes demographic information and customer engagement with the company:
 - **ID:** Unique identifier for each customer.
 - **Year_Birth:** Customer’s birth year.
@@ -65,7 +65,7 @@ This section includes demographic information and customer engagement with the c
 - **Recency:** Number of days since the customer’s last purchase.
 - **Complain:** Whether the customer has filed a complaint in the last two years (1 = Yes, 0 = No).
 
-### **2. Products (Customer Spending on Various Categories)**
+### **4.2. Products (Customer Spending on Various Categories)**
 Represents the total amount spent by customers on different product categories over the last two years:
 - **MntWines:** Amount spent on wine.
 - **MntFruits:** Amount spent on fruits.
@@ -74,13 +74,13 @@ Represents the total amount spent by customers on different product categories o
 - **MntSweetProducts:** Amount spent on sweets.
 - **MntGoldProds:** Amount spent on gold.
 
-### **3. Promotion (Marketing Campaign Engagement)**
+### **4.3. Promotion (Marketing Campaign Engagement)**
 Indicates customer participation in various promotional campaigns:
 - **NumDealsPurchases:** Number of purchases made using discounts.
 - **AcceptedCmp1–AcceptedCmp5:** Whether the customer accepted offers from past campaigns (1 = Yes, 0 = No).
 - **Response:** Whether the customer accepted the offer in the latest campaign (1 = Yes, 0 = No).
 
-### **4. Place (Shopping Channels & Preferences)**
+### **4.4. Place (Shopping Channels & Preferences)**
 Captures the number of purchases and interactions across different sales channels:
 - **NumWebPurchases:** Purchases made through the company’s website.
 - **NumCatalogPurchases:** Purchases made using a catalog.
@@ -109,3 +109,20 @@ Focus on products, such as:
 + Fish => `MntFishProducts`
 + Sweet => `MntSweetProducts`
 + Gold => `MntGoldProds`
+
+### 6.1. Wines
+![Wine Correlation](images/wine_corr.png)
+
+### 6.2. Fruits
++ MntSweetProducts:  **0.583519**
+
+### 6.3. Meat
+![Meat Correlation](images/meat_corr.png)
+
+### 6.4. Fish
+
+### 6.5. Sweet
++ MntFruits:   **0.583519**
+
+### 6.6. Gold
++ NumCatalogPurchases:   **0.568304**
